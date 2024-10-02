@@ -1,7 +1,7 @@
 package com.everis.base.stepDefinitions;
 
 import com.everis.base.models.Order;
-import com.everis.base.steps.PetStoreOrderStep;
+import com.everis.base.steps.PetStoreCreateOrderStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
 public class PetStoreCreateOrderSD {
 
     @Steps
-    PetStoreOrderStep petStoreCreateOrderStep;
+    PetStoreCreateOrderStep petStoreCreateOrderStep;
 
     @Given("que estoy en la pagina principal")
     public void queEstoyEnLaPaginaPrincipal() {

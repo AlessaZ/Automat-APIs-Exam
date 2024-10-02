@@ -1,18 +1,22 @@
 package com.everis.base.steps;
 
 import com.everis.base.models.Order;
+import io.restassured.response.Response;
+
+
 import static io.restassured.RestAssured.given;
 
-public class PetStoreOrderStep {
+public class PetStoreCreateOrderStep {
 
     private String URL_BASE = "https://petstore.swagger.io/v2" ;
-    public int codigoRespuesta;
+    private Response response;
+    private int codigoRespuesta;
     private Order orderResponse;
 
-    public void crearOrden(int id, int petId, int quantity){
+    public void crearOrden(int id, int petId, int quantity) {
         Order order = new Order(id, petId, quantity);
 
-        codigoRespuesta = given()
+        response = given()
                 .baseUri(URL_BASE)
                 .header("Content-Type", "application/json")
                 .body(order)
@@ -21,13 +25,10 @@ public class PetStoreOrderStep {
                 .then()
                 .statusCode(200)
                 .extract()
-                .statusCode();
+                .response();
 
-        orderResponse = given()
-                .baseUri(URL_BASE)
-                .when()
-                .get("/store/order/"+id)
-                .as(Order.class);
+        codigoRespuesta = response.getStatusCode();
+        orderResponse = response.as(Order.class);
 
         System.out.println("Creado: ID "+ orderResponse.getId());
         System.out.println("Creado: Pet ID "+ orderResponse.getPetId());
