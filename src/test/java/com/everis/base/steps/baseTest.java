@@ -14,7 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "com.everis.base",
-        tags = "@ConsultarOrden", // => Se puede especificar qué Ejecutar
+        tags = "@GestionarOrdenes", // => Se puede especificar qué Ejecutar
         strict = true)
 
 public class baseTest {

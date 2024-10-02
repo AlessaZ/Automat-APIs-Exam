@@ -1,3 +1,4 @@
+@GestionarOrdenes
 Feature: Gestión de órdenes de tienda de mascotas
 
   @CrearOrden
