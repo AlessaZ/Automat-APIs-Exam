@@ -21,7 +21,7 @@ stages:
           vmImage: ${vmImage}
         steps:
           - task: JavaToolInstaler@0
-            input:
+            inputs:
               versionSpec: '17'
               jdkArchitectureOption: 'x64'
               jdkSourceOption: 'PreInstalled'
@@ -44,6 +44,6 @@ stages:
             inputs:
               testResultsFormat: 'JUnit'
               testResultsFiles: '**TEST-*xml'
-
+              publishRunAttachments: true
 
 
