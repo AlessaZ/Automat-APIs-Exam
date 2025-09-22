@@ -1,0 +1,43 @@
+trigger: none #no quiero que se ejecute cada vez que se hace un commit
+
+parameters:
+  - name: tags
+    type: string
+    displayName: Execute Tags
+    values:
+      - '@GestionarOrdenes'
+
+variables:
+  - name: vmImage
+    value: 'ubuntu-lastest'
+    readonly: true
+
+stages:
+  - stage: Execute_tests
+    displayName: Execute Automated Tests
+    jobs:
+      - job: Job
+        pool:
+          vmImage: ${vmImage}
+        steps:
+          - task: JavaToolInstaler@0
+            input:
+              versionSpec: '17'
+              jdkArchitectureOption: 'x64'
+              jdkSourceOption: 'PreInstalled'
+          - script: |
+              mvn clean install -DskipTests"
+            displayName: 'Build'
+          - script: |
+              mvn clean verify "-Dcucumber.filter.tags=${{ parameters.tags }}"
+            displayName: 'Execute Tests'
+
+          - task: PublishPipelineArtifact@1
+            condition: always()
+            inputs:
+              targetPath: '$(Pipeline.Workspace)/s/target/site/serenity'
+              artifact: 'SerenityReport'
+              publishLocation: 'pipeline'
+
+
+

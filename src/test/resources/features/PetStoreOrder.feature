@@ -22,8 +22,8 @@ Feature: Gestión de órdenes de tienda de mascotas
     Then verificar que el código de estado de la respuesta sea <code>
     And la respuesta debe contener el id<id>, petId<petId>,quantity<quantity>
     Examples:
-      | id   | petId    | quantity | code | |
-      | 205  | 2        | 3        | 200  | |
-      | 206  | 2        | 3        | 200  | |
-      | 207  | 3        | 1        | 200  | |
-      | 208  | 3        | 1        | 200  | |
+      | id   | petId     | code |  quantity ||
+      | 205  | 2         | 200  | 3         ||
+      | 206  | 2         | 200  | 3         ||
+      | 207  | 3         | 200  | 3         ||
+      | 208  | 3         | 200  | 1         ||
