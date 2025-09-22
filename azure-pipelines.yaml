@@ -20,7 +20,7 @@ stages:
         pool:
           vmImage: ${vmImage}
         steps:
-          - task: JavaToolInstaler@0
+          - task: JavaToolInstaller@0
             inputs:
               versionSpec: '17'
               jdkArchitectureOption: 'x64'
